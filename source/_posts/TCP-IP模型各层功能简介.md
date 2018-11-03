@@ -2,6 +2,8 @@
 title: TCP/IP模型各层功能简介
 date: 2018-04-08 10:56:45
 tags:
+categories:
+- 计算机网络
 ---
 
 # TCP/IP模型结构

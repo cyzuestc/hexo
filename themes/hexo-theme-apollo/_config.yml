@@ -1,9 +1,9 @@
 menu:
-    Blog: /
-    Archive: /archives/
+    Lastest: /
+    All: /archives/
     University: https://www.uestc.edu.cn/
     GitHub: https://github.com/cyzuestc
-    清水河畔: http://bbs.uestc.edu.cn/  
+    BBS: http://bbs.uestc.edu.cn/  
 
 favicon: /favicon.png
 logo: /favicon.png
