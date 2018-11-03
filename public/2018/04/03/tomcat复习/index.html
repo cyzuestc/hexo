@@ -1,0 +1,140 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> tomcat复习 · 陈昀钊</title><meta name="description" content="tomcat复习 - 陈昀钊"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://yzchen.com/atom.xml" title="陈昀钊"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://www.uestc.edu.cn/" target="_blank" class="nav-list-link">UNIVERSITY</a></li><li class="nav-list-item"><a href="https://github.com/cyzuestc" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="http://bbs.uestc.edu.cn/" target="_blank" class="nav-list-link">清水河畔</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">tomcat复习</h1><div class="post-info">Apr 3, 2018</div><div class="post-content"><h1 id="Tomcat是什么"><a href="#Tomcat是什么" class="headerlink" title="Tomcat是什么?"></a>Tomcat是什么?</h1><p>Tomcat 是由 Apache 开发的一个 Servlet 容器，实现了对 Servlet 和 JSP 的支持，并提供了作为Web服务器的一些特有功能，如Tomcat管理和控制平台、安全域管理和Tomcat阀等。</p>
+<p>由于 Tomcat 本身也内含了一个 HTTP 服务器，它也可以被视作一个单独的 Web 服务器。但是，不能将 Tomcat 和 Apache HTTP 服务器混淆，Apache HTTP 服务器是一个用 C 语言实现的 HTTP Web 服务器；这两个 HTTP web server 不是捆绑在一起的。Tomcat 包含了一个配置管理工具，也可以通过编辑XML格式的配置文件来进行配置。</p>
+<h1 id="tomcat重要目录"><a href="#tomcat重要目录" class="headerlink" title="tomcat重要目录"></a>tomcat重要目录</h1><ul>
+<li>/bin -Tomcat脚本存放目录. .sh文件用于Unix文件</li>
+<li>/conf - Tomcat配置文件目录</li>
+<li>/logs - Tomcat默认日志目录</li>
+<li>/webapps - webapp 运行目录</li>
+</ul>
+<h1 id="web工程发布目录结构"><a href="#web工程发布目录结构" class="headerlink" title="web工程发布目录结构"></a>web工程发布目录结构</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">|-- webapp                         # 站点根目录</span><br><span class="line">    |-- META-INF                   # META-INF 目录</span><br><span class="line">    |   `-- MANIFEST.MF            # 配置清单文件</span><br><span class="line">    |-- WEB-INF                    # WEB-INF 目录</span><br><span class="line">    |   |-- classes                # class文件目录</span><br><span class="line">    |   |   |-- *.class            # 程序需要的 class 文件</span><br><span class="line">    |   |   `-- *.xml              # 程序需要的 xml 文件</span><br><span class="line">    |   |-- lib                    # 库文件夹</span><br><span class="line">    |   |   `-- *.jar              # 程序需要的 jar 包</span><br><span class="line">    |   `-- web.xml                # Web应用程序的部署描述文件</span><br><span class="line">    |-- &lt;userdir&gt;                  # 自定义的目录</span><br><span class="line">    |-- &lt;userfiles&gt;                # 自定义的资源文件</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">webapp：工程发布文件夹。其实每个 war 包都可以视为 webapp 的压缩包。</span><br><span class="line"></span><br><span class="line">META-INF：META-INF 目录用于存放工程自身相关的一些信息，元文件信息，通常由开发工具，环境自动生成。</span><br><span class="line"></span><br><span class="line">WEB-INF：Java web应用的安全目录。所谓安全就是客户端无法访问，只有服务端可以访问的目录。</span><br><span class="line"></span><br><span class="line">/WEB-INF/classes：存放程序所需要的所有 Java class 文件。</span><br><span class="line"></span><br><span class="line">/WEB-INF/lib：存放程序所需要的所有 jar 文件。</span><br><span class="line"></span><br><span class="line">/WEB-INF/web.xml：web 应用的部署配置文件。它是工程中最重要的配置文件，它描述了 servlet 和组成应用的其它组件，以及应用初始化参数、安全管理约束等</span><br></pre></td></tr></table></figure>
+<h1 id="Server"><a href="#Server" class="headerlink" title="Server"></a>Server</h1><p>Server元表示整个Catelina servlet容器<br>因此,它必须是conf/server.xml配置文件的根元素,它的属性代表了整个servlet容器的特性</p>
+<h2 id="属性表"><a href="#属性表" class="headerlink" title="属性表"></a>属性表</h2><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>classname</td>
+<td>这个类必须实现org.apache.catalina.Server接口</td>
+<td>默认org.apache.catalina.core.StandardServer</td>
+</tr>
+<tr>
+<td>address</td>
+<td>服务器等待关机命令的TCP/IP地址. 如果没有指定地址,则使用localhost</td>
+<td></td>
+</tr>
+<tr>
+<td>port</td>
+<td>服务器等待关机命令的TCP/IP端口号.设置-1以禁止关闭端口</td>
+</tr>
+<tr>
+<td>shutdown</td>
+<td>必须通过TCP / IP连接接收到指定端口号的命令字符串，以关闭Tomcat。</td>
+</tr>
+</tbody>
+</table>
+<h1 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h1><p>Service元素表示一个或多个连接器组件的组合，这些组件共享一个用于处理传入请求的引擎组件。Server 中可以有多个 Service。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;Server port=&quot;8080&quot; shutdown=&quot;SHUTDOWN&quot;&gt;</span><br><span class="line">  &lt;Service name=&quot;xxx&quot;&gt;</span><br><span class="line">  ...</span><br><span class="line">  &lt;/Service&gt;</span><br><span class="line">&lt;/Server&gt;</span><br></pre></td></tr></table></figure></p>
+<p>#Executor<br>executor表示可以在Tomcat的组件之间共享的线程池<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;Service name=&quot;xxx&quot;&gt;</span><br><span class="line">  &lt;Executor name=&quot;tomcatThreadPool&quot; namePrefix=&quot;catalina-exec-&quot; maxThreads=&quot;300&quot; minSpareThreads=&quot;25&quot;/&gt;</span><br><span class="line">&lt;/Service&gt;</span><br></pre></td></tr></table></figure></p>
+<h1 id="Connector"><a href="#Connector" class="headerlink" title="Connector"></a>Connector</h1><p>Connector代表连接组件.Tomcat 支持三种协议：HTTP/1.1、HTTP/2.0、AJP。</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+<th>备注 </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>asyncTimeout</td>
+<td>Servlet3.0规范中的异步请求超时</td>
+<td>默认30s</td>
+</tr>
+<tr>
+<td>port</td>
+<td>请求连接的TCP Port</td>
+<td>设置为0,则会随机选取一个未占用的端口号</td>
+</tr>
+<tr>
+<td>protocol</td>
+<td>协议. 一般情况下设置为 HTTP/1.1,这种情况下连接模型会在NIO和APR/native中自动根据配置选择     </td>
+</tr>
+<tr>
+<td>URIEncoding</td>
+<td>对URI的编码方式.</td>
+<td>如果设置系统变量org.apache.catalina.STRICT_SERVLET_COMPLIANCE为true,使用 ISO-8859-1编码;如果未设置此系统变量且未设置此属性, 使用UTF-8编码</td>
+</tr>
+<tr>
+<td>useBodyEncodingForURI</td>
+<td>是否采用指定的contentType而不是URIEncoding来编码URI中的请求参数</td>
+</tr>
+</tbody>
+</table>
+<h1 id="Context"><a href="#Context" class="headerlink" title="Context"></a>Context</h1><p>Context元素表示一个Web应用程序, 它在特定的虚拟主机中运行,每个web应用程序都基于Web应用程序存档（WAR）文件，或者包含相应的解包内容的相应目录，如Servlet规范中所述。</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+<th>备注 </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>altDDName</td>
+<td>web.xml部署描述符路径</td>
+<td>默认 /WEB-INF/web.xml</td>
+</tr>
+<tr>
+<td>docBase</td>
+<td>Context的Root路径</td>
+<td>和Host的appBase相结合, 可确定web应用的实际目录</td>
+</tr>
+<tr>
+<td>failCtxIfServletStartFails</td>
+<td>同Host中的failCtxIfServletStartFails, 只对当前Context有效</td>
+<td>默认为false</td>
+</tr>
+<tr>
+<td>logEffectiveWebXml</td>
+<td>是否日志打印web.xml内容(web.xml由默认的web.xml和应用中的web.xml组成)</td>
+<td>默认为false</td>
+</tr>
+<tr>
+<td>path</td>
+<td>web应用的context path</td>
+<td>如果为根路径,则配置为空字符串(“”), 不能不配置</td>
+</tr>
+<tr>
+<td>privileged</td>
+<td>是否使用Tomcat提供的manager servlet</td>
+<td></td>
+</tr>
+<tr>
+<td>reloadable</td>
+<td>/WEB-INF/classes/ 和/WEB-INF/lib/ 目录中class文件发生变化是否自动重新加载</td>
+<td>默认为false</td>
+</tr>
+<tr>
+<td>swallowOutput</td>
+<td>true情况下, System.out和System.err输出将被定向到web应用日志中</td>
+<td>默认为false</td>
+</tr>
+</tbody>
+</table>
+<h1 id="Engine"><a href="#Engine" class="headerlink" title="Engine"></a>Engine</h1><p>Engine元素表示与特定的Catalina服务相关联的整个请求处理机器。它接收并处理来自一个或多个连接器的所有请求，并将完成的响应返回给连接器，以便最终传输回客户端。</p>
+<h1 id="Host"><a href="#Host" class="headerlink" title="Host"></a>Host</h1><p>Host元素表示一个虚拟主机，它是一个服务器的网络名称（如“<a href="http://www.mycompany.com”）与运行Tomcat的特定服务器的关联。" target="_blank" rel="noopener">www.mycompany.com”）与运行Tomcat的特定服务器的关联。</a></p>
+<h1 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h1><ol>
+<li><p>部署方式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">将打包好的 war 包放在 Tomcat 安装目录下的 webapps 目录下，然后在 bin 目录下执行 startup.bat 或 startup.sh ，Tomcat 会自动解压 webapps 目录下的 war 包。</span><br><span class="line"></span><br><span class="line">成功后，可以访问 http://localhost:8080/xxx （xxx 是 war 包文件名）。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>嵌入式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">在 pom.xml 中添加依赖</span><br><span class="line"></span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;org.apache.tomcat.embed&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;tomcat-embed-core&lt;/artifactId&gt;</span><br><span class="line">  &lt;version&gt;8.5.24&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">添加 SimpleEmbedTomcatServer.java 文件</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</div></article></div></main><footer><div class="paginator"><a href="/2018/04/06/mysql更改密码/" class="prev">PREV</a><a href="/2017/12/25/spring注解详解/" class="next">NEXT</a></div><div class="copyright"><p>© 2018 powered by <a href="https://github.com/cyzuestc" target="_blank">Chenyunzhao</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>

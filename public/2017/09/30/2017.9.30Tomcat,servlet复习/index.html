@@ -1,0 +1,46 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 2017.9.30 Tomcat servlet复习 · 陈昀钊</title><meta name="description" content="2017.9.30 Tomcat servlet复习 - 陈昀钊"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://yzchen.com/atom.xml" title="陈昀钊"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://www.uestc.edu.cn/" target="_blank" class="nav-list-link">UNIVERSITY</a></li><li class="nav-list-item"><a href="https://github.com/cyzuestc" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="http://bbs.uestc.edu.cn/" target="_blank" class="nav-list-link">清水河畔</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">2017.9.30 Tomcat servlet复习</h1><div class="post-info">Sep 30, 2017</div><div class="post-content"><p>1.tomcat的conf文件下service.xml中配置默认端口8080</p>
+<hr>
+<p>2.tomcat目录层次结构</p>
+<ul>
+<li>bin  存放启动和关闭Tomcat的脚本文件</li>
+<li>conf tomcat的配置文件</li>
+<li>lib  tomcat所需jar包</li>
+<li>logs 日志文件</li>
+<li>temp 运行时临时文件</li>
+<li>webapps 供外界访问的web资源存放目录</li>
+<li>work 工作目录</li>
+<li></li>
+</ul>
+<hr>
+<p>3.进入服务器conf中的server.xml 中,配置<br>context代表web应用,path是虚拟路径,docBase是应用位置<br>修改service后需要重启服务器.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Context path=&quot;/itcast&quot; docBase=&quot;c:\news&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<p>这种配置需要重启服务器</p>
+<hr>
+<p>4.配置缺省web应用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Context path=&quot;&quot; docBase=&quot;c:\news&quot;/&gt;</span><br></pre></td></tr></table></figure></p>
+<p>但这样会覆盖原来的页面</p>
+<hr>
+<p>5.web.xml文件是web应用中最重要的配置文件,必须放在WEB-INF目录中. 他的作用有</p>
+<ul>
+<li>将某个web资源配置为网站首页</li>
+<li>将servlet程序映射到某个url地址</li>
+<li>为web应用配置监听器</li>
+<li>为web应用配置过滤器</li>
+<li></li>
+</ul>
+<hr>
+<p>6.web应用的组成结构</p>
+<ul>
+<li>根目录: html,jsp,css,js文件</li>
+<li><p>WEB-INF目录: (外界无法访问,由web服务器直接访问)</p>
+<p>  -classes java类</p>
+<p>  -lib jar包</p>
+<p>  -web.xml</p>
+</li>
+</ul>
+<hr>
+<p>7.配置虚拟主机service.xml中,增加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;Host name=&quot;www.sina.com&quot; appBase=&quot;c:\sina&quot;&gt;</span><br><span class="line">    &lt;Context path=&quot;/mail&quot; docBase=&quot;c:\sina/mail&quot;/&gt;</span><br><span class="line">&lt;/Host&gt;</span><br></pre></td></tr></table></figure></p>
+<p>然后在hosts文件中配置192.168.1.1 <a href="http://www.sina.com" target="_blank" rel="noopener">www.sina.com</a></p>
+<hr>
+<p>8.配置web应用的首页<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;welcome-file-list&gt;</span><br><span class="line">    &lt;welcome-file&gt;.html&lt;/welcome-file&gt;</span><br><span class="line">&lt;/welcome-file-list&gt;</span><br></pre></td></tr></table></figure></p>
+<p>9.</p>
+</div></article></div></main><footer><div class="paginator"><a href="/2017/10/06/2017.10.6读书笔记/" class="prev">PREV</a><a href="/2017/09/24/2017.9.24多线程与文件下载/" class="next">NEXT</a></div><div class="copyright"><p>© 2018 powered by <a href="https://github.com/cyzuestc" target="_blank">Chenyunzhao</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>

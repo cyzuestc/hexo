@@ -1,0 +1,16 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 2017.10.29 操作系统学习 · 陈昀钊</title><meta name="description" content="2017.10.29 操作系统学习 - 陈昀钊"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://yzchen.com/atom.xml" title="陈昀钊"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://www.uestc.edu.cn/" target="_blank" class="nav-list-link">UNIVERSITY</a></li><li class="nav-list-item"><a href="https://github.com/cyzuestc" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="http://bbs.uestc.edu.cn/" target="_blank" class="nav-list-link">清水河畔</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">2017.10.29 操作系统学习</h1><div class="post-info">Oct 29, 2017</div><div class="post-content"><p>1.知道cpu接口之下是的原理</p>
+<ul>
+<li>改cpu管理,改屏幕输出,改系统接口,改内存管理</li>
+</ul>
+<hr>
+<p>从图灵机到通用图灵机<br>图灵机:只会一道菜的厨师<br>通用图灵机:设置控制器动作,控制器状态,数据对象</p>
+<h2 id="程序-gt-内存-gt-取指-gt-执行"><a href="#程序-gt-内存-gt-取指-gt-执行" class="headerlink" title="程序&gt;内存&gt;取指&gt;执行"></a>程序&gt;内存&gt;取指&gt;执行</h2><p>对于英特尔机:</p>
+<p>基本输入输出系统:BIOS</p>
+<p>开机时,CS+0xFFFF,IP=0x0000, CS+IP形成地址</p>
+<p>寻址0xFFFF0(ROM BISO映射区)</p>
+<p>检查RAM 软硬磁盘</p>
+<p>将磁盘0磁道0扇区读入0x7c00处(就是操作系统的引导扇区)</p>
+<p>从引导扇区读入的512个字节:</p>
+<p>启动设备信息被设置在CMOS中</p>
+<p>引导扇区代码:bootsect.s(引导扇区,s是汇编语言)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">断寄存器,断点偏移</span><br><span class="line">mov ax, #BOOTSEG mov ds,ax</span><br><span class="line">mov ax, #INITSEG mov es,ax</span><br><span class="line">mov cx,#256(512字节)</span><br><span class="line">sub si, si sub di, di</span><br><span class="line">rep movw</span><br><span class="line">jmpi go,INITSET</span><br><span class="line">boot工作:读setup,读system</span><br></pre></td></tr></table></figure></p>
+</div></article></div></main><footer><div class="paginator"><a href="/2017/10/29/2017.10.30 Spring,Struts学习/" class="prev">PREV</a><a href="/2017/10/29/2017.10.29 Spring学习/" class="next">NEXT</a></div><div class="copyright"><p>© 2018 powered by <a href="https://github.com/cyzuestc" target="_blank">Chenyunzhao</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>

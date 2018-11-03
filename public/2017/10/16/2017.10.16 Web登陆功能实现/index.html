@@ -1,0 +1,43 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 2017.10.16 Web登陆功能实现 · 陈昀钊</title><meta name="description" content="2017.10.16 Web登陆功能实现 - 陈昀钊"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://yzchen.com/atom.xml" title="陈昀钊"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://www.uestc.edu.cn/" target="_blank" class="nav-list-link">UNIVERSITY</a></li><li class="nav-list-item"><a href="https://github.com/cyzuestc" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="http://bbs.uestc.edu.cn/" target="_blank" class="nav-list-link">清水河畔</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">2017.10.16 Web登陆功能实现</h1><div class="post-info">Oct 16, 2017</div><div class="post-content"><p>Request对象:</p>
+<h2 id="客户端向服务器发送请求时-服务器对本次请求创建request对象-并在调用Servlet的service方法时-将该对象传递给service方法-Request对象中封装了客户端发来的所有请求数据"><a href="#客户端向服务器发送请求时-服务器对本次请求创建request对象-并在调用Servlet的service方法时-将该对象传递给service方法-Request对象中封装了客户端发来的所有请求数据" class="headerlink" title="客户端向服务器发送请求时,服务器对本次请求创建request对象,并在调用Servlet的service方法时,将该对象传递给service方法,Request对象中封装了客户端发来的所有请求数据"></a>客户端向服务器发送请求时,服务器对本次请求创建request对象,并在调用Servlet的service方法时,将该对象传递给service方法,Request对象中封装了客户端发来的所有请求数据</h2><p>登陆功能各层实现</p>
+<hr>
+<p>1.UserDao<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">private QueryRunner qr= new TxQueryRunner();</span><br><span class="line">public User findByLoginnameAndLoginpass(String loginname, String loginpass)throw SQLException&#123;</span><br><span class="line">    String sql = &quot;select * from t_user where loginname=?and loginpass = ?&quot;;</span><br><span class="line">    return qr.query(sql,new BeanHandler&lt;User.class&gt;,loginname,loginpass);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>2.UserService<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">private UserDao userDao = new UserDao();</span><br><span class="line">public User login(User user)&#123;</span><br><span class="line">    return userDao.findByLoginnameAndLoginpass(user.getLoginname(),user.getLoginpass());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>3.UserServlet<br><code>`</code><br>public String login(HttpServletRequest req,HttpServletResponse resp) throws ServletException,IOException{<br>    <!--1.封装表单数据到USer--><br>    <!--2.校验表单数据--><br>    <!--3.使用service查询,得到User--><br>    <!--4.查看用户是否存在--><br>    <!--    *如果不存在或者未激活--><br>    <!--    1.保存错误信息--><br>    <!--    2.保存表单数据--><br>    <!--    3.转发到login.jsp--><br>    <!--    *如果存在--><br>    <!--    1.保存user到session中--><br>    <!--    2.保存用户名称到session中,中文需要编码处理(cookie中没有中文)--></p>
+<pre><code>1.封装表单数据
+User formuser = CommonUtils.toBean(req.getParameterMap(),User.class);
+2.校验
+Map&lt;String,String&gt; errors = validateLogin(formuser,req.getSession());
+if(errors.size()&gt;0){
+    req.setAttribute(&quot;form&quot;,formUser);
+    req.setAttribute(&quot;errors&quot;,errors);
+    return &quot;f:/jsps/user/login.jsp&quot;;
+}
+3.调用userService#login()方法
+User user = userService.login(formuser);
+4.开始判断
+if(user == null){
+    req.setAttribute(&quot;msg&quot;,&quot;用户名或者密码错误!&quot;);
+    req.setAttribute(&quot;user&quot;,formUser);
+    return &quot;f:/jsps/user/login.jsp&quot;;
+}else{
+    if(user.isStatus){
+        req.setAttribute(&quot;msg&quot;,&quot;你没激活!&quot;);
+        req.setAttribute(&quot;user&quot;,formUser);
+        return &quot;f:/jsps/user/login.jsp&quot;;            
+    }else{
+        //保存用户到session
+        req.getSession.setAttribute(&quot;sessionUser&quot;,user);
+        //获取用户名到cookie中
+        String loginname=user.getLoginname();
+        loginname = URLEncoder.encode(loginname,&quot;utf-8&quot;);
+        Cookie cookie = new Cookie(&quot;loginname&quot;,loginname);
+        cookie.setMaxAge(60*60*24*10);//十天
+        resp.addCookie(cookie);
+        return &quot;r:/index.jsp&quot;;
+    }
+}
+</code></pre><p>}</p>
+</div></article></div></main><footer><div class="paginator"><a href="/2017/10/17/2017.10.9 javaScript学习/" class="prev">PREV</a><a href="/2017/10/16/2017.10.16 Web激活用户/" class="next">NEXT</a></div><div class="copyright"><p>© 2018 powered by <a href="https://github.com/cyzuestc" target="_blank">Chenyunzhao</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> linux任务jobs详解 · 陈昀钊</title><meta name="description" content="linux任务jobs详解 - 陈昀钊"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://yzchen.com/atom.xml" title="陈昀钊"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://www.uestc.edu.cn/" target="_blank" class="nav-list-link">UNIVERSITY</a></li><li class="nav-list-item"><a href="https://github.com/cyzuestc" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="http://bbs.uestc.edu.cn/" target="_blank" class="nav-list-link">清水河畔</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">linux任务jobs详解</h1><div class="post-info">May 10, 2018</div><div class="post-content"><h1 id="为什么用到jobs"><a href="#为什么用到jobs" class="headerlink" title="为什么用到jobs"></a>为什么用到jobs</h1><p>关于linux的前台后台,一直很迷惑,趁着qqbot的需求,好好的学习一波!主要参考<a href="https://blog.csdn.net/q_l_s/article/details/44117969" target="_blank" rel="noopener">这里</a>以及<a href="https://www.ibm.com/developerworks/cn/linux/l-cn-nohup/" target="_blank" rel="noopener">这里</a>~</p>
+<h1 id="jobs相关命令"><a href="#jobs相关命令" class="headerlink" title="jobs相关命令"></a>jobs相关命令</h1><ol>
+<li>&amp; 最常被用到,用在命令最后, 让进程在后台运行</li>
+<li>jobs 查看后台运行的进程</li>
+<li>fg %n 让后台运行的进程n到前台来</li>
+<li>bg %n 让进程n到后台去</li>
+<li>ctrl+z 将前台的命令放到后台暂停执行</li>
+<li>ctrl+c 强制中断程序的执行/当执行输入某些命令时，使用ctrl+c会自动进入新命令输入。</li>
+<li>Ctrl-s 暂停屏幕输出【锁住终端】</li>
+<li>Ctrl-q 恢复屏幕输出【解锁终端】</li>
+<li>Ctrl-o Discard output</li>
+<li>Ctrl-l 清屏，【是字母L的小写】等同于Clear</li>
+<li>Ctrl+a 切换到命令行开始</li>
+<li>Ctrl+e 切换到命令行末尾</li>
+<li>Ctrl+u 清除剪切光标之前的内容</li>
+<li>Ctrl+k 清除剪切光标及光标之后的内容</li>
+<li>Ctrl+y 在光标处粘贴剪切的内容</li>
+<li>ps -ef|grep qqbot 查找qqbot的进程号</li>
+<li>ctrl z&gt;bg %1 将当前运行的进程放在后台</li>
+</ol>
+</div></article></div></main><footer><div class="paginator"><a href="/2018/05/11/idea创建maven一直loading-archetype-list/" class="prev">PREV</a><a href="/2018/05/10/qqbot学习记录/" class="next">NEXT</a></div><div class="copyright"><p>© 2018 powered by <a href="https://github.com/cyzuestc" target="_blank">Chenyunzhao</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>
